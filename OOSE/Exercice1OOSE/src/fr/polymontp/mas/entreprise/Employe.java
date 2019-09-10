@@ -1,10 +1,13 @@
 package fr.polymontp.mas.entreprise;
+
 public abstract class Employe {
 	private String nom;
 	private double primeHebdo;
+	protected Entreprise entreprise;
 	
-	public Employe(String nom) {
+	public Employe(String nom, Entreprise entreprise) {
 		this.nom = nom;
+		this.entreprise = entreprise;
 	}
 
 	public abstract float getSalaire();

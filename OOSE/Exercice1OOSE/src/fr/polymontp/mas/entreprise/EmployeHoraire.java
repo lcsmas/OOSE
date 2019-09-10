@@ -5,15 +5,15 @@ public class EmployeHoraire extends Employe {
 	private int hS;
 	private float t;
 	
-	public EmployeHoraire(String nom,int hN, int hS, int t) {
-		super(nom);
+	public EmployeHoraire(String nom,int hN, int hS, int t, Entreprise e) {
+		super(nom,e);
 		this.hN = hN;
 		this.hS = hS;
 		this.t = t;
 	}
 
-	public EmployeHoraire(String nom) {
-		super(nom);
+	public EmployeHoraire(String nom, Entreprise e) {
+		super(nom, e);
 	}
 
 	public void setInfosSalaire(int hN, int hS, int t) {

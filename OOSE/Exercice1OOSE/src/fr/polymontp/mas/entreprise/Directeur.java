@@ -1,33 +1,22 @@
 package fr.polymontp.mas.entreprise;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Directeur extends Employe{
 	private float sommeFixe = 2000 ;
-	static Directeur leDirecteur = null ;
-	private List<Commercial> commerciaux = new ArrayList<>();
-	
-	public static Directeur CreeDirecteur(String nom, List<Employe> employes) {
-		if(leDirecteur == null) {
-			leDirecteur = new Directeur(nom, employes);
-		}
-		return leDirecteur;
-	}
 
-	private Directeur(String nom, List<Employe> employes) {
-		super(nom);		
-		for(Employe employe : employes) {
-			if(employe.getClass().equals(Commercial.class)) {
-				commerciaux.add((Commercial)employe);
-			}
-		}
+	Directeur(String nom, Entreprise e) {
+		super(nom, e);
 	}
 	
 	public float getSalaire() {
 		float sommeCA = 0;
-		for (Commercial commercial : commerciaux) {
-			sommeCA = sommeCA + (float) (commercial.getCA()*0.04);
+		Employe[] emp = super.entreprise._emp;
+		for (int i = 0; i < emp.length; i++) {
+			if(emp[i] == null) {
+				break;
+			}
+			if(emp[i].getClass().equals(Commercial.class)) {
+				sommeCA = sommeCA + (float) (((Commercial)emp[i]).getCA()*0.04);
+			}
 		}
 		return sommeCA + sommeFixe;
 	}
