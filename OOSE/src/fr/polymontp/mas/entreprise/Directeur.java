@@ -1,5 +1,7 @@
 package fr.polymontp.mas.entreprise;
 
+import java.util.ArrayList;
+
 public class Directeur extends Employe{
 	private float sommeFixe = 2000 ;
 
@@ -9,13 +11,11 @@ public class Directeur extends Employe{
 	
 	public float getSalaire() {
 		float sommeCA = 0;
-		Employe[] emp = super.entreprise._emp;
-		for (int i = 0; i < emp.length; i++) {
-			if(emp[i] == null) {
-				break;
-			}
-			if(emp[i].getClass().equals(Commercial.class)) {
-				sommeCA = sommeCA + (float) (((Commercial)emp[i]).getCA()*0.04);
+		ArrayList<Employe> emp = super.entreprise.getEmp();
+		
+		for (Employe employe : emp) {
+			if (Employe.class.equals(Commercial.class)){
+				sommeCA = sommeCA + (float) (((Commercial)employe).getCA()*0.04);
 			}
 		}
 		return sommeCA + sommeFixe;

@@ -1,52 +1,58 @@
 package fr.polymontp.mas.entreprise;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 public class Entreprise {
 	private double primeHebdo = Math.random() * 1000;
+	private String nom;
+	private ArrayList<Employe> emp = new ArrayList<Employe>();
+	private Directeur Dir;
+	private int nbComMax;
+	private int nbCom = 0;
+	
+	Entreprise(String nom, int nbComMax) {
+		this.nom = nom; 
+		this.nbComMax = nbComMax;
+	}
+	
 	public double getPrimeHebdo() {
 		return primeHebdo;
 	}
-
-	private Directeur Dir;
-	private int nbComMax;
+	
 	public int getNbComMax() {
 		return nbComMax;
 	}
 
-	private int nbCom = 0;
-	
-	public Employe _emp[] = new Employe[300];
-	
-	Entreprise(int nbComMax) {
-		this.nbComMax = nbComMax;
+	public void ajouterEmp(Employe e) {
+		this.emp.add(e);
 	}
 	
-	public int findFirstEmptyIndex() { 
-		for (int i = 0; i < _emp.length; i++) {
-			if(_emp[i] == null) {
-				return i;
-			}
-		}
-		return -1;
+	public void suprimerEmp(int index) {
+		this.emp.remove(index);
+	}
+
+	public ArrayList<Employe> getEmp() {
+		return emp;
+	}
+
+	public void setEmp(ArrayList<Employe> emp) {
+		this.emp = emp;
 	}
 	
-	public void ajouterEmp(Employe e) throws EntrepriseSatureDeCommerciauxException {
-		if(_emp[_emp.length -1 ] == null) {
-			if(e.getClass().equals(Commercial.class)) {
-				if(nbCom < nbComMax) {
-					_emp[findFirstEmptyIndex()] = e;
-					 nbCom = nbCom +1;
-				}else {
-					throw new EntrepriseSatureDeCommerciauxException(this);
-				}
-			} else if(e.getClass().equals(Directeur.class) && Dir == null) {
-				Dir = (Directeur) e;
-				_emp[findFirstEmptyIndex()] = e;
-			} else {
-				_emp[findFirstEmptyIndex()] = e;
-			}			
-		}else {
-			System.err.println("Entreprise pleine");
+	public String toString() {
+		System.out.println("Entreprise : "+this.nom);
+		for (Employe employe : this.emp) {
+			employe.setPrimeHebdo(this.getPrimeHebdo());
+			System.out.println(employe.toStringName());
 		}
+		return nom;
+	}
+	
+	public void iterEntreprise() {
+		Iterator<Employe> it = (Iterator<Employe>) emp.iterator();
+		while (((java.util.Iterator<Employe>) it).hasNext()) {
+			System.out.println( ((Employe)it.next()).getNom());}
 	}
 	
 }

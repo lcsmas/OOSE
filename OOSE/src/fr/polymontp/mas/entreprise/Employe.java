@@ -23,4 +23,8 @@ public abstract class Employe {
 	public String toString() {
 		return getNom() + " gagne " + String.valueOf(this.getSalaire() + primeHebdo) + "€";
 	}
+	
+	public String toStringName() {
+		return getNom();
+	}
 }
