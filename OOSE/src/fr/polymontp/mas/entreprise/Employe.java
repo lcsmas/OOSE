@@ -1,6 +1,6 @@
 package fr.polymontp.mas.entreprise;
 
-public abstract class Employe {
+public abstract class Employe implements Comparable<Employe> {
 	private String nom;
 	private double primeHebdo;
 	protected Entreprise entreprise;
@@ -26,5 +26,9 @@ public abstract class Employe {
 	
 	public String toStringName() {
 		return getNom();
+	}
+	
+	public int compareTo(Employe arg0) {
+		return this.getNom().compareTo(arg0.getNom());
 	}
 }

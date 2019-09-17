@@ -6,7 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.StringTokenizer;
 
-public class Commercial extends Employe {
+public class Commercial extends Employe  {
 	private float somme;
 	private float CA;
 

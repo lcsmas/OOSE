@@ -22,7 +22,24 @@ public class TestEntreprise {
 		entreprise.ajouterEmp( new Commercial("Thierry", 2500, 7000, entreprise));
 		entreprise.ajouterEmp( new Directeur("Rachid", entreprise));
 	
-		//entreprise.toString();
-		entreprise.iterEntreprise();
+		Entreprise entreprise2 = new Entreprise("Mas®", 5);
+		ArrayList<Employe> employes2 = entreprise.getEmp();
+		entreprise2.ajouterEmp( new EmployeHoraire("Abdel2", 35, 45, 50, entreprise2));
+		entreprise2.ajouterEmp( new Commercial("Thierry2", 2500, 7000, entreprise2));
+		entreprise2.ajouterEmp( new Directeur("Rachid2", entreprise2));
+		
+	    joinEntreprise(entreprise, entreprise2).compareName();
+		
+	}
+	
+	public static Entreprise joinEntreprise(Entreprise e1, Entreprise e2) {
+		Entreprise joinEntreprise = new Entreprise("Union", 10);
+		for (Employe e : e1.getEmp()) {
+			joinEntreprise.ajouterEmp(e);
+		}
+		for (Employe e : e2.getEmp()) {
+			joinEntreprise.ajouterEmp(e);
+		}
+		return joinEntreprise;
 	}
 }

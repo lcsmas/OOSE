@@ -1,9 +1,10 @@
 package fr.polymontp.mas.entreprise;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 
-public class Entreprise {
+public class Entreprise{
 	private double primeHebdo = Math.random() * 1000;
 	private String nom;
 	private ArrayList<Employe> emp = new ArrayList<Employe>();
@@ -49,10 +50,27 @@ public class Entreprise {
 		return nom;
 	}
 	
-	public void iterEntreprise() {
-		Iterator<Employe> it = (Iterator<Employe>) emp.iterator();
-		while (((java.util.Iterator<Employe>) it).hasNext()) {
-			System.out.println( ((Employe)it.next()).getNom());}
+	public Iterator<Employe> iterEntreprise() {
+		return emp.iterator();
 	}
+	
+	public void compareSalaire() {
+		Collections.sort(this.emp , new SalaryComparator( SalaryComparator.DESCENDING_ORDER));
+		Iterator<Employe> it = this.iterEntreprise();
+		while(it.hasNext()){
+			Employe i = it.next();
+			System.out.println( i.getNom()+" "+ i.getSalaire());
+		}
+	}
+	
+	public void compareName() {
+		Collections.sort(this.emp);
+		Iterator<Employe> it = this.iterEntreprise();
+		while(it.hasNext()){
+			Employe i = it.next();
+			System.out.println( i.getNom()+" "+ i.getSalaire());
+		}
+	}
+	
 	
 }
