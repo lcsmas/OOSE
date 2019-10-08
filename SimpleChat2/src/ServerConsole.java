@@ -9,7 +9,7 @@ public class ServerConsole implements ChatIF{
 
 	  public ServerConsole(int port) 
 	  {
-		  server = new EchoServer(port);
+		  server = new EchoServer(port, this);
 	  }
 
 	  
@@ -48,7 +48,7 @@ public class ServerConsole implements ChatIF{
 	   */
 	  public void display(String message) 
 	  {
-	    System.out.println("Server MSG> " + message);
+	    System.out.println("Server MSG > " + message);
 	  }
 
 	  
@@ -61,18 +61,31 @@ public class ServerConsole implements ChatIF{
 	   */
 	  public static void main(String[] args) 
 	  {
-	    String host = "";
-	    int port = 0;  //The port number
+		  int port = 0; //Port to listen on
 
-	    try
-	    {
-	      host = args[0];
-	    }
-	    catch(ArrayIndexOutOfBoundsException e)
-	    {
-	      host = "localhost";
-	    }
-	    ClientConsole chat= new ClientConsole(host, DEFAULT_PORT);
-	    chat.accept();  //Wait for console data
+		  try
+		  {
+			  port = Integer.parseInt(args[0]); //Get port from command line
+		  }
+		  catch(Throwable t)
+		  {
+			  port = EchoServer.DEFAULT_PORT; //Set port to 5555
+		  }
+		  
+		  ServerConsole sc = new ServerConsole(port);
+
+
+		  try 
+		  {
+			  sc.server.listen(); //Start listening for connections
+		  } 
+		  catch (Exception ex) 
+		  {
+			  System.out.println("ERROR - Could not listen for clients!");
+		  }
+		  
+		  
+		  
+		  sc.accept();  //Wait for console data
 	  }
 }
