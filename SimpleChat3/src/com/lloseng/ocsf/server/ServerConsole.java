@@ -2,8 +2,8 @@ package com.lloseng.ocsf.server;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-
 import com.lloseng.ocsf.client.ChatIF;
+
 
 public class ServerConsole implements ChatIF{
 	  EchoServer server;

@@ -138,7 +138,7 @@ public class ObservableClient extends Observable
    *
    * @param message The message received from the client.
    */
-  protected void handleMessageFromServer(Object message)
+protected void handleMessageFromServer(Object message)
   {
     setChanged();
     notifyObservers(message);
