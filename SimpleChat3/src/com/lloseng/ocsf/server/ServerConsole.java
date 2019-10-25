@@ -82,6 +82,7 @@ public class ServerConsole implements ChatIF{
 		  } 
 		  catch (Exception ex) 
 		  {
+			  System.err.println(ex);
 			  System.out.println("ERROR - Could not listen for clients!");
 		  }
 		  
